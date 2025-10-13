@@ -1,3 +1,0 @@
-dependencies:
-  - pip:
-      - sklearn==0.0.post12
