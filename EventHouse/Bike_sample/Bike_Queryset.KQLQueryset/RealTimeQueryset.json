@@ -1,0 +1,22 @@
+{
+  "queryset": {
+    "version": "1.0.0",
+    "dataSources": [
+      {
+        "id": "9270edb8-d102-47a2-ac89-2b567c7ddbc3",
+        "clusterUri": "",
+        "type": "Fabric",
+        "databaseItemId": "94947015-a5f6-a1b0-40da-0a52f4085481",
+        "databaseItemName": "Bike_Database"
+      }
+    ],
+    "tabs": [
+      {
+        "id": "d0c0630d-c0db-498e-ae3b-0811f3145793",
+        "content": "//**************************************************************************************************************************************************************\n// The following KQL Queryset is created to Bike point database\n// All the data is readily available in 'Bikestream' table\n// You can run a query by placing the cursor anywhere on the query text and clicking the run button (or Shift + Enter).\n// KQL overview https://aka.ms/KQL_overview\n// Quick KQL reference guide can be found here https://aka.ms/kql-quick-reference\n//***********************************************************************************************************************************************************\n\n// Count number of rows\nBikestream\n| count\n \n// View a small sample of records\nBikestream\n| project Street,No_Bikes\n| take 100\n \n  SELECT TOP 100 * from Bikestream\n\n   SELECT CASE\n          WHEN Neighbourhood IS NULL OR Neighbourhood = '' THEN 'Unidentified'\n          ELSE Neighbourhood\n        END AS Neighbourhood,\n        SUM(No_Bikes) AS [Total Number of Bikes]\n FROM Bikestream\n GROUP BY CASE\n            WHEN Neighbourhood IS NULL OR Neighbourhood = '' THEN 'Unidentified'\n            ELSE Neighbourhood\n          END;\n\n// Count the data points by Neighbourhood\nBikestream\n| summarize count() by Neighbourhood\n| render piechart\n \n// How many bikes are present per street\nBikestream\n| summarize countBikes=sum(No_Bikes) by Street\n| order by countBikes\n| render columnchart\n \n// Which is the most popular bike point\nBikestream\n| summarize SumOfBikes=sum(No_Bikes) by BikepointID\n| top 1 by SumOfBikes desc\n \n// Which streets have the highest number of empty docks\nBikestream\n| summarize countEmptyDocks=sum(No_Empty_Docks) by Street\n| top 5 by countEmptyDocks\n \n// Available bike points\nBikestream\n| where EnqueuedTime > ago(1h)\n| summarize arg_max(EnqueuedTime, No_Empty_Docks) by BikepointID,Longitude, Latitude, ['available docks'] = strcat( No_Empty_Docks, ' @', BikepointID )\n| project Longitude, Latitude, ['available docks']\n| render scatterchart with (kind = map)\n \n// Look at the point on a specific street\nBikestream\n| where Street == \"Strand\"\n| distinct BikepointID\n \n// What are daily trends in bike point usage\nBikestream\n| summarize countBikes=sum(No_Bikes) by bin(EnqueuedTime, 1d)\n| render timechart\n\n",
+        "title": "Tab",
+        "dataSourceId": "9270edb8-d102-47a2-ac89-2b567c7ddbc3"
+      }
+    ]
+  }
+}

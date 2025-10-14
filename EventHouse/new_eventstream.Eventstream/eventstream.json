@@ -1,0 +1,24 @@
+{
+  "sources": [
+    {
+      "id": "99d9f44b-feb1-4d3b-bb9d-7f55d54f9e7b",
+      "name": "new-source",
+      "type": "SampleData",
+      "properties": {
+        "type": "YellowTaxi"
+      }
+    }
+  ],
+  "destinations": [],
+  "streams": [
+    {
+      "id": "11bc8e92-79ba-4a0d-bee5-e8479934604d",
+      "name": "new_eventstream-stream",
+      "type": "DefaultStream",
+      "properties": {},
+      "inputNodes": []
+    }
+  ],
+  "operators": [],
+  "compatibilityLevel": "1.0"
+}
