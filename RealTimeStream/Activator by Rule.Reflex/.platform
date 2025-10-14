@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Reflex",
+    "displayName": "Activator by Rule"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "a9e5ca05-728f-8db6-45a3-49bae8003ace"
+  }
+}

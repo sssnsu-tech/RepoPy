@@ -1,0 +1,74 @@
+{
+  "schema_version": 65,
+  "tiles": [
+    {
+      "id": "6c49ac63-3e57-4eba-ae39-a3916fa10364",
+      "title": "Average Prices",
+      "visualType": "table",
+      "pageId": "70ee19ab-12af-4e80-a2b8-721c42b0f8ea",
+      "layout": {
+        "width": 9,
+        "height": 7,
+        "x": 0,
+        "y": 0
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "5e4133d3-721e-408e-b1ed-572fa0c1da84"
+      },
+      "visualOptions": {
+        "selectedDataOnLoad": {
+          "all": true,
+          "limit": 10
+        }
+      }
+    }
+  ],
+  "baseQueries": [],
+  "parameters": [
+    {
+      "kind": "duration",
+      "id": "5fee9996-1793-4cad-b0a6-f0157d8d85d3",
+      "displayName": "Time range",
+      "description": "",
+      "beginVariableName": "_startTime",
+      "endVariableName": "_endTime",
+      "defaultValue": {
+        "kind": "dynamic",
+        "count": 1,
+        "unit": "hours"
+      },
+      "showOnPages": {
+        "kind": "all"
+      }
+    }
+  ],
+  "dataSources": [
+    {
+      "id": "ec1141e7-df3d-48b2-9739-5db58f025827",
+      "kind": "kusto-trident",
+      "scopeId": "kusto-trident",
+      "clusterUri": "",
+      "database": "00d31891-48e1-816e-4d3d-f0b9a6e79151",
+      "name": "EH1",
+      "workspace": "00000000-0000-0000-0000-000000000000"
+    }
+  ],
+  "pages": [
+    {
+      "name": "Page 1",
+      "id": "70ee19ab-12af-4e80-a2b8-721c42b0f8ea"
+    }
+  ],
+  "queries": [
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "ec1141e7-df3d-48b2-9739-5db58f025827"
+      },
+      "text": " stock\n | where [\"time\"] > ago(5m)\n | summarize avgPrice = avg(todecimal(bidPrice)) by symbol\n | project symbol, avgPrice",
+      "id": "5e4133d3-721e-408e-b1ed-572fa0c1da84",
+      "usedVariables": []
+    }
+  ]
+}

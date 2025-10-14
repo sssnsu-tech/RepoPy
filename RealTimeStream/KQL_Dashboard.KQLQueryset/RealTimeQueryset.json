@@ -1,0 +1,22 @@
+{
+  "queryset": {
+    "version": "1.0.0",
+    "dataSources": [
+      {
+        "id": "709a5ee7-772c-42da-8b97-2a38072d4830",
+        "clusterUri": "",
+        "type": "Fabric",
+        "databaseItemId": "00d31891-48e1-816e-4d3d-f0b9a6e79151",
+        "databaseItemName": "EH1"
+      }
+    ],
+    "tabs": [
+      {
+        "id": "288e3b1a-b40e-48f5-b2c9-6cb72ed8e5e3",
+        "content": " stock\n | where [\"time\"] > ago(5m)\n | summarize avgPrice = avg(todecimal(bidPrice)) by symbol\n | project symbol, avgPrice",
+        "title": "Tab",
+        "dataSourceId": "709a5ee7-772c-42da-8b97-2a38072d4830"
+      }
+    ]
+  }
+}

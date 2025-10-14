@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "KQLDashboard",
+    "displayName": "Stock Dashboard",
+    "description": "Stock Dashboard"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "cf7fee6e-fa26-90c5-40b2-cee2c4e35d45"
+  }
+}
