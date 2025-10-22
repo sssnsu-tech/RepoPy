@@ -23,7 +23,7 @@
 # CELL ********************
 
 from pyspark.sql.types import *
-    
+|$$ 
 # Create the schema for the table
 orderSchema = StructType([
     StructField("SalesOrderNumber", StringType()),
@@ -34,7 +34,8 @@ orderSchema = StructType([
     StructField("Item", StringType()),
     StructField("Quantity", IntegerType()),
     StructField("UnitPrice", FloatType()),
-    StructField("Tax", FloatType())
+    StructField("Tax", FloatType()),
+    Stru
     ])
     
 # Import all files from bronze folder of lakehouse
